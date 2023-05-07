@@ -73,9 +73,8 @@ def get_unique_terms(words):
     """Extracts unique terms from a list of words."""
     unique_terms = set()
     for word in words:
-        # Match words containing at least one letter and any combination of letters, numbers, hyphens, underscores, and periods
-        # Exclude terms ending with numbers
-        if re.match(r"(?=.*[A-Za-z])[A-Za-z0-9._'\[\]-]+(?<!\d)$", word) and len(word) > 1:
+        # Updated regex pattern to capture the mentioned terms and others
+        if re.match(r'\b(?:[A-Z]{1,2}\d{1,2}[A-Z]{0,2}-?\d{0,5}|[A-Z]{2,}\d{1,2}(?:\.\d{2})?|[A-Z]{1}\d{1}[A-Z]{1}\d{1}|(?=.*[A-Za-z])[A-Za-z0-9._\'\[\]-]+(?<!\d)$)\b', word) and len(word) > 1:
             unique_terms.add(word.lower())  # convert to lowercase
     return unique_terms
 
